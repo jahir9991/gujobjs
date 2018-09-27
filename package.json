@@ -1,6 +1,23 @@
 {
   "name": "Gujob.js",
   "version": "1.0.0",
+  "keywords": [
+    "gujob",
+    "gujobjs",
+    "node",
+    "nodejs",
+    "ts",
+    "typescript",
+    "js",
+    "javascript",
+    "es5",
+    "es6",
+    "es7"
+  ],
+  "repository": {
+    "type": "pubic",
+    "url": "https://github.com/jahir9991/gujobjs"
+  },
   "author": {
     "name": "Md Jahir ALam Raju",
     "email": "work.jahir@gmail.com",
