@@ -1,20 +1,21 @@
-import * as bodyParser from 'body-parser';
-import * as compression from 'compression';
-import * as cookieParser from 'cookie-parser';
-import * as cors from 'cors';
-import * as express from 'express';
-import * as helmet from 'helmet';
-import * as mongoose from 'mongoose';
-import * as logger from 'morgan';
-import { PostRouter } from './router/PostRouter';
-import { UserRouter } from './router/UserRouter';
+import * as bodyParser from "body-parser";
+import * as createError from "http-errors";
+import * as config from "config";
+import * as compression from "compression";
+import * as cookieParser from "cookie-parser";
+import * as cors from "cors";
+import * as express from "express";
+import * as helmet from "helmet";
+import * as mongoose from "mongoose";
+import * as logger from "morgan";
 
-const postRouter = new PostRouter();
-const userRouter = new UserRouter();
+import { apiRoutes } from "./routes";
 
 class Server {
   // set app to be of type express.Application
   public app: express.Application;
+
+  router: any;
 
   constructor() {
     this.app = express();
@@ -24,30 +25,27 @@ class Server {
 
   // application config
   public config(): void {
-    const MONGO_URI: string = 'mongodb://localhost/tes';
-    mongoose.connect(MONGO_URI || process.env.MONGODB_URI);
-
     // express middleware
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
     this.app.use(cookieParser());
-    this.app.use(logger('dev'));
+    this.app.use(logger("dev"));
     this.app.use(compression());
     this.app.use(helmet());
     this.app.use(cors());
 
     // cors
     this.app.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+      res.header("Access-Control-Allow-Origin", "http://localhost:8080");
       res.header(
-        'Access-Control-Allow-Methods',
-        'GET, POST, PUT, DELETE, OPTIONS'
+        "Access-Control-Allow-Methods",
+        "GET, POST, PUT, DELETE, OPTIONS"
       );
       res.header(
-        'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials'
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials"
       );
-      res.header('Access-Control-Allow-Credentials', 'true');
+      res.header("Access-Control-Allow-Credentials", "true");
       next();
     });
   }
@@ -56,9 +54,46 @@ class Server {
   public routes(): void {
     const router: express.Router = express.Router();
 
-    this.app.use('/', router);
-    this.app.use('/api/v1/posts', postRouter.router);
-    this.app.use('/api/v1/users', userRouter.router);
+    this.app.use(
+      config.get("API.PREFIX"),
+      (req, res, next) => {
+        console.log(
+          `a ${req.method} request in ${config.get("API.PREFIX")}... route.`
+        );
+        // req.jwt = Auth.getToken(req);
+        // req.user = Auth.getUser(req);
+        next();
+      },
+      apiRoutes
+    );
+
+    this.app.use("/", (req, res, next) => {
+      console.log(`a ${req.method} request in main route.`);
+      // req.jwt = Auth.getToken(req);
+      // req.user = Auth.getUser(req);
+      // res.send('hello please try <a href="/api/v1/products" end >point</a> ')
+      next();
+    });
+
+    // catch 404 and forward to error handler
+    this.app.use((req, res, next) => {
+      next(createError(404));
+    });
+
+    // error handler
+    this.app.use((err, req, res, next) => {
+      // set locals, only providing error in development
+      res.locals.message = err.message;
+      res.locals.error = req.app.get("env") === "development" ? err : {};
+
+      // render the error page
+      res.status(err.status || 500);
+      res.status(404).json({
+        success: false,
+        error: "not found",
+        status: 404
+      });
+    });
   }
 }
 

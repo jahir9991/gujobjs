@@ -1,0 +1,26 @@
+{
+  "PORT": "3000",
+  "MIGRATION": {
+    "token": "mytoken"
+  },
+
+  "API": { "PREFIX": "/api/v1" },
+  "MYSQL": {
+    "HOST": "localhost",
+    "USER": "root",
+    "PASSWORD": "",
+    "DATABASE": "eri",
+    "DIALECT": "mysql"
+  },
+  "MONGODB": {
+    "HOST": "localhost",
+    "USER": "root",
+    "PASSWORD": "",
+    "DATABASE": "eri",
+    "DIALECT": "mysql"
+  },
+  "JWT": {
+    "secret":
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8k3x3Wi9V3kMkYu9tjDaSRD2cBjOgp3FQU/Gndlced9WsaVNx3lgkbbS47sPpFMdQVSgmGbRqhaj9vUrD56+QOMn5HuxeAp5VMwwD$"
+  }
+}
