@@ -8,6 +8,8 @@ This is a sample server using Express, TypeScript, MongoDB, and Mongoose.
 https://github.com/jahir9991/gujobjs.git
 ```
 
+change database cradential in config/default.json 
+
 ```
 npm install
 ```
