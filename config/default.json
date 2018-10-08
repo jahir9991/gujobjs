@@ -9,14 +9,14 @@
     "HOST": "localhost",
     "USER": "root",
     "PASSWORD": "",
-    "DATABASE": "eri",
+    "DATABASE": "DBNAME",
     "DIALECT": "mysql"
   },
   "MONGODB": {
     "HOST": "localhost",
     "USER": "root",
     "PASSWORD": "",
-    "DATABASE": "eri",
+    "DATABASE": "DBNAME",
     "DIALECT": "mysql"
   },
   "JWT": {
