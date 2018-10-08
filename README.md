@@ -5,7 +5,7 @@ This is a sample server using Express, TypeScript, MongoDB, and Mongoose.
 ### Getting Started
 
 ```
-git clone https://github.com/jahir9991/nodeTS.git
+https://github.com/jahir9991/gujobjs.git
 ```
 
 ```
