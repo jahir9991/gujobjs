@@ -33,7 +33,6 @@ authController.login = async (req, res) => {
     }
 
     const payload = user.toJSON();
-    payload.accessGroupParent = payload.accessGroup.parent;
     delete payload.password;
     delete payload.remember_token;
 
