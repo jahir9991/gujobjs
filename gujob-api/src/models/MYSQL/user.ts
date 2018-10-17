@@ -33,7 +33,7 @@ export const User: any = mysqlConnect.define(
     },
     access_group_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: true
     },
     status: {
       type: DataTypes.INTEGER(3),
