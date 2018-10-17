@@ -1,0 +1,34 @@
+{
+  "PORT": "3000",
+  "MIGRATION": {
+    "token": "mytoken"
+  },
+  "DEFAULTDB": "MYSQL",
+
+  "API": { "PREFIX": "/api/v1" },
+  "MYSQL": {
+    "HOST": "localhost",
+    "USER": "root",
+    "PASSWORD": "bitspeck248",
+    "DATABASE": "jstraders",
+    "DIALECT": "mysql"
+  },
+  "POSTGRESQL": {
+    "HOST": "localhost",
+    "USER": "jahir",
+    "PASSWORD": "jahir",
+    "DATABASE": "eri",
+    "DIALECT": "postgres"
+  },
+  "MONGODB": {
+    "HOST": "localhost",
+    "USER": "root",
+    "PASSWORD": "",
+    "DATABASE": "jstraders",
+    "DIALECT": "mysql"
+  },
+  "JWT": {
+    "secret":
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8k3x3Wi9V3kMkYu9tjDaSRD2cBjOgp3FQU/Gndlced9WsaVNx3lgkbbS47sPpFMdQVSgmGbRqhaj9vUrD56+QOMn5HuxeAp5VMwwD$"
+  }
+}

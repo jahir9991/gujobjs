@@ -1,0 +1,43 @@
+image: node:10
+stages:
+  - deploy
+
+before_script:
+  - apt-get update -qq && apt-get install -y -qq sshpass
+  - mkdir -p ~/.ssh
+  - echo -e "$DEPLOY_SERVER_PRIVATE_KEY"  > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - eval "$(ssh-agent -s)"
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  #- ssh-keyscan -H $DEPLOYMENT_SERVER_IP >> ~/.ssh/known_hosts
+
+deploy_staging:
+  stage: deploy
+  environment:
+    name: staging
+  image: node:10
+  only:
+    - master
+  script:
+    - echo "Deploy to staging server"
+    - ls
+    - sshpass -V
+    - export SSHPASS=$DEPLOYMENT_SERVER_PASSWORD 
+    - sshpass -e scp -o stricthostkeychecking=no -r . $DEPLOYMENT_SERVER_USER@$DEPLOYMENT_SERVER_IP:/var/www/eri-api
+    - ssh  root@$DEPLOYMENT_SERVER_IP 
+       "cd /var/www/eri-api &&
+       chmod +x server.sh &&
+       ./server.sh
+       "
+
+deploy_production:
+  stage: deploy
+  environment: 
+    name: production
+  only:
+    - tags
+  script:
+    - ls
+    - sshpass -V
+    - export SSHPASS=$USER_PASS 
+    - sshpass -e scp -o stricthostkeychecking=no -r . $DEPLOYMENT_SERVER_USER@$DEPLOYMENT_SERVER_IP:/var/www/auto
