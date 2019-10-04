@@ -1,0 +1,36 @@
+{
+	"PRODUCTION": "true",
+	"PORT": "3000",
+	"MIGRATION": {
+		"token": "mytoken"
+	},
+	"DEFAULT_DB": "MYSQL",
+
+	"API": { "PREFIX": "/api/v1" },
+	"MYSQL": {
+		"HOST": "localhost",
+		"PORT": "3306",
+		"USER": "root",
+		"PASSWORD": "root",
+		"DATABASE": "test_db",
+		"DIALECT": "mysql"
+	},
+	"POSTGRESQL": {
+		"HOST": "localhost",
+		"PORT": "3306",
+		"USER": "root",
+		"PASSWORD": "root",
+		"DATABASE": "test_db",
+		"DIALECT": "postgres"
+	},
+	"MONGODB": {
+		"HOST": "localhost",
+		"USER": "root",
+		"PASSWORD": "",
+		"DATABASE": "jstraders",
+		"DIALECT": "mysql"
+	},
+	"JWT": {
+		"secret": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8k3x3Wi9V3kMkYu9tjDaSRD2cBjOgp3FQU/Gndlced9WsaVNx3lgkbbS47sPpFMdQVSgmGbRqhaj9vUrD56+QOMn5HuxeAp5VMwwD$"
+	}
+}

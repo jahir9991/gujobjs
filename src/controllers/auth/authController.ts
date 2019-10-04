@@ -1,10 +1,10 @@
 import * as config from 'config';
 import { Helper, mysqlConnect } from '../../libs';
 import { User as Model, UserInfo } from '../../models/MYSQL';
-import { BaseController } from '../baseController';
 
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
+import { BaseController } from '../../libs/baseController';
 const controllerName = Helper.getFileName(__filename, __dirname);
 
 export const authController = BaseController(controllerName, Model, {});

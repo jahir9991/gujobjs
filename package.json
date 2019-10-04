@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --watch src  --exec ts-node src/app.ts",
-    "migrate":"migrate=true npm start",
+    "migrate": "migrate=true npm start",
     "build:prod": "tsc",
     "prod:server": "NODE_ENV=production node ./build/app.js",
     "pm2": "pm2 start npm --no-automation --name api -- run prod:server",

@@ -1,6 +1,6 @@
 # TypeScript Express Server (TES)
 
-This is a sample server using Express, TypeScript, MongoDB, and Mongoose.
+This is a sample server using Express, TypeScript, MongoDB(Mongoose) and mysql/postgres(Sequelize)
 
 ### Getting Started
 
